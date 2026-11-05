@@ -1,0 +1,14 @@
+# Build artifacts
+/.lake/
+/lake-packages/
+/build/
+*.olean
+*.ilean
+*.olean.hash
+*.c
+*.o
+*.so
+*.dylib
+
+# macOS
+.DS_Store

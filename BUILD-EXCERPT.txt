@@ -1,0 +1,22 @@
+# Build excerpt (clean build, no stale oleans)
+
+Command:
+```bash
+cd unified && lake clean && lake build Submission
+```
+(`lake clean` removed all build artifacts first, forcing a full clean build.)
+
+Final lines of the build log:
+
+```
+✔ [5435/5437] Built PrimeGaps.Bounded246 (2.6s)
+ℹ [5436/5437] Built Submission (14s)
+info: Submission.lean:43:0: 'BigOSpeedrun.PrimeGaps.prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Submission.lean:44:0: 'BigOSpeedrun.PrimeGaps.frequently_prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Submission.lean:45:0: 'BigOSpeedrun.PrimeGaps.nth_prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (5437 jobs).
+=== BUILD EXIT=0 ===
+```
+
+`lake env lean Submission.lean` prints the same three axiom lines with no other
+output (see `axiom-audit.txt`).

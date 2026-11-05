@@ -1,0 +1,3 @@
+'BigOSpeedrun.PrimeGaps.prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BigOSpeedrun.PrimeGaps.frequently_prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BigOSpeedrun.PrimeGaps.nth_prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]

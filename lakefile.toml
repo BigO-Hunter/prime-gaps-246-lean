@@ -1,0 +1,52 @@
+name = "PrimeGapsIntegration"
+version = "0.1.0"
+defaultTargets = ["Submission"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "0df444a360eaa60ab8c11dca51a86af692955474"
+
+[[require]]
+name = "PrimeNumberTheoremAnd"
+git = "https://github.com/kimihiro64/PrimeNumberTheoremAnd.git"
+rev = "0f15a38c619298b5cd786d39a84dd4bb8997324c"
+
+# Robin1984 is vendored locally, scoped to ONLY the three Xi modules that
+# bombieri-vinogradov's `Solution` actually imports (XiDivisorCriticalLine,
+# XiZeroConstant, XiLogDerivative). Robin1984's own `Solution` / full-Robin
+# root (which needs a divergent PrimeNumberTheoremAnd branch) is intentionally
+# not vendored, so it is never built.
+[[lean_lib]]
+name = "Robin1984"
+globs = ["Robin1984.NicolasLandau.+"]
+
+[[lean_lib]]
+name = "PrimeGapsTheory"
+roots = ["PrimeGapsTheory"]
+
+[[lean_lib]]
+name = "PrimeGapsCert"
+roots = ["PrimeGapsCert"]
+
+[[lean_lib]]
+name = "PrimeGaps"
+roots = ["PrimeGaps"]
+
+[[lean_lib]]
+name = "BombieriVinogradov"
+roots = ["BombieriVinogradov"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]
+
+[[lean_lib]]
+name = "Submission"
+roots = ["Submission"]

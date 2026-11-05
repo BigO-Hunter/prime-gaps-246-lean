@@ -5,7 +5,7 @@
 
 ## What was composed
 
-`unified/Submission.lean` applies PrimeGapsLib's implication to
+`Submission.lean` applies PrimeGapsLib's implication to
 bombieri-vinogradov's proof of the hypothesis:
 
 ```
@@ -35,7 +35,7 @@ Three theorem forms, all with **no remaining hypotheses**:
    removed from the BV side so it imports PrimeGapsLib's canonical versions.
 2. **Packaging fix** — Robin1984's git dependency is dropped. Only the three Xi
    modules that BV's `Solution` actually imports (`XiDivisorCriticalLine`,
-   `XiZeroConstant`, `XiLogDerivative`) are vendored under `unified/Robin1984/`,
+   `XiZeroConstant`, `XiLogDerivative`) are vendored under `Robin1984/`,
    exposed via `[[lean_lib]] Robin1984 globs = ["Robin1984.NicolasLandau.+"]`.
    Robin1984's own `Solution`/full-Robin root — which needs a divergent
    `PrimeNumberTheoremAnd` branch and was what broke `lake build` — is never built.

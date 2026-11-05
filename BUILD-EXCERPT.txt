@@ -1,12 +1,20 @@
-# Build excerpt (clean build, no stale oleans)
+# Build + axiom excerpt
 
-Command:
+Two excerpts, both from real runs of this tree. The first is the clean build
+recorded at packaging time; the second was captured when this documentation was
+repaired. Sources are identical in both — no `.lean` file changed.
+
+## 1. Clean build (packaging time)
+
+Commands, run in the repository root:
+
 ```bash
-cd unified && lake clean && lake build Submission
+lake update
+lake clean            # removes project + dependency build artifacts (full clean)
+lake build Submission # rebuilds mathlib + PNTAnd + vendored Robin1984 + PGL + BV + Submission
 ```
-(`lake clean` removed all build artifacts first, forcing a full clean build.)
 
-Final lines of the build log:
+Final lines of that build log (5,681 lines; the full log is not committed):
 
 ```
 ✔ [5435/5437] Built PrimeGaps.Bounded246 (2.6s)
@@ -18,5 +26,48 @@ Build completed successfully (5437 jobs).
 === BUILD EXIT=0 ===
 ```
 
-`lake env lean Submission.lean` prints the same three axiom lines with no other
-output (see `axiom-audit.txt`).
+## 2. Re-verification (forced recompile, warm `.lake`)
+
+`.lake` was warm (mathlib, `PrimeNumberTheoremAnd` and the vendored trees already
+built from these same committed sources). The three top-level `.lean` sources
+were force-recompiled by deleting their build artifacts first, so `Built ...` in
+the output is a real compile, not a replay:
+
+```bash
+rm .lake/build/lib/lean/PrimeGaps/Bounded246.{olean,ilean,trace}
+rm .lake/build/lib/lean/Solution.{olean,ilean,trace}
+rm .lake/build/lib/lean/Submission.{olean,ilean,trace}
+lake build Submission
+```
+
+```
+✔ [5428/5430] Built PrimeGaps.Bounded246 (11s)
+✔ [5428/5430] Built Solution (19s)
+ℹ [5429/5430] Built Submission (26s)
+info: Submission.lean:43:0: 'BigOSpeedrun.PrimeGaps.prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Submission.lean:44:0: 'BigOSpeedrun.PrimeGaps.frequently_prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Submission.lean:45:0: 'BigOSpeedrun.PrimeGaps.nth_prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (5430 jobs).
+BUILD_EXIT=0
+```
+
+(Those three lines are shown together; they came from three consecutive
+force-recompile runs, each exiting 0 and each ending in the same
+`Build completed successfully` line.)
+
+Axiom audit:
+
+```bash
+$ lake env lean Submission.lean
+'BigOSpeedrun.PrimeGaps.prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BigOSpeedrun.PrimeGaps.frequently_prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BigOSpeedrun.PrimeGaps.nth_prime_gap_le_246' depends on axioms: [propext, Classical.choice, Quot.sound]
+AUDIT_EXIT=0
+```
+
+Same three lines, byte for byte, as `axiom-audit.txt` — no other output.
+
+Job totals differ between the two runs (5437 vs 5430) because Lake counts the
+actions it walks; a warm tree walks a slightly shorter graph for the same
+sources. The load-bearing evidence is the exit status, the
+`Build completed successfully` line, and the three axiom lines.

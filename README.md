@@ -3,6 +3,14 @@
 A Lean 4 formalization proving **H1 ≤ 246** (bounded gaps between primes), by
 composing two independently developed libraries:
 
+> **Layout (2026-11-06):** all modules now live under `Submission/` and their
+> imports name `Submission.*` — the layout the bigospeedrun verifier's
+> prime-gaps profile expects (`solution_module = Submission`,
+> `source_roots = ["Submission"]`). Content is otherwise unchanged from
+> `ac0eb01b`. The proof entry point is root `Submission.lean`, ending in
+> `theorem Race.bound : BigOSpeedrun.PrimeGaps.Bound 246`.
+
+
 - **[AxiomMath/PrimeGapsLib](https://github.com/AxiomMath/PrimeGapsLib)** (Apache-2.0)
   proves `bombieriVinogradov_implies_prime_gap_le_246` — the Bombieri–Vinogradov
   theorem implies prime gaps are bounded by 246 — with a Lean-checked 50-tuple

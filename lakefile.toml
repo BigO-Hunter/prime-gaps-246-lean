@@ -1,5 +1,5 @@
 name = "PrimeGapsIntegration"
-version = "0.1.0"
+version = "0.2.0"
 defaultTargets = ["Submission"]
 
 [leanOptions]
@@ -18,35 +18,12 @@ name = "PrimeNumberTheoremAnd"
 git = "https://github.com/kimihiro64/PrimeNumberTheoremAnd.git"
 rev = "0f15a38c619298b5cd786d39a84dd4bb8997324c"
 
-# Robin1984 is vendored locally, scoped to ONLY the three Xi modules that
-# bombieri-vinogradov's `Solution` actually imports (XiDivisorCriticalLine,
-# XiZeroConstant, XiLogDerivative). Robin1984's own `Solution` / full-Robin
-# root (which needs a divergent PrimeNumberTheoremAnd branch) is intentionally
-# not vendored, so it is never built.
-[[lean_lib]]
-name = "Robin1984"
-globs = ["Robin1984.NicolasLandau.+"]
-
-[[lean_lib]]
-name = "PrimeGapsTheory"
-roots = ["PrimeGapsTheory"]
-
-[[lean_lib]]
-name = "PrimeGapsCert"
-roots = ["PrimeGapsCert"]
-
-[[lean_lib]]
-name = "PrimeGaps"
-roots = ["PrimeGaps"]
-
-[[lean_lib]]
-name = "BombieriVinogradov"
-roots = ["BombieriVinogradov"]
-
-[[lean_lib]]
-name = "Solution"
-roots = ["Solution"]
-
+# The verifier's prime-gaps profile (bigospeedrun/verifier, profiles/direct.json)
+# stages source_roots = ["Submission"] with solution_module = "Submission": every
+# Lean module of this proof lives under Submission/ and its imports name
+# Submission.*. A single library with default roots ["Submission"] builds
+# Submission.lean and, transitively, every module it imports — the same set the
+# seven per-root libraries built before the re-cut, including the three vendored
+# Robin1984.Xi modules used by the Bombieri-Vinogradov solution.
 [[lean_lib]]
 name = "Submission"
-roots = ["Submission"]

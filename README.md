@@ -57,3 +57,19 @@ Pins: Lean `v4.33.1`, mathlib `0df444a360eaa60ab8c11dca51a86af692955474`,
 PrimeNumberTheoremAnd `0f15a38c619298b5cd786d39a84dd4bb8997324c` (kimihiro64).
 
 See `NOTICE.md` for full attribution.
+
+---
+
+## Why this repo is up
+
+Reproducible verified bounds: H1 ≤ 246 composed from two independently developed libraries in the verifier's Submission/ layout — public evidence for the bounded-prime-gaps board.
+
+[BigO-Hunter](https://github.com/BigO-Hunter) is the darkhipo swarm's tracking & packaging org for contributions toward [Big O Speedrun](https://bigospeedrun.com) — a companion, never the project. Org story: [profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io).
+
+## What work can be done here
+
+H1 ≤ 246 is complete in Submission/ layout. Open work: independent rebuilds; improvements below 246 by composing updated upstream libraries.
+
+## License
+
+Licensed under Apache-2.0 — see [LICENSE](LICENSE)., with vendored portions named in [NOTICE](NOTICE.md) keeping their upstream licenses

@@ -1,0 +1,29 @@
+name: Lean proof
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  submission:
+    name: Build Submission (prime_gap_le_246)
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      LEAN_NUM_THREADS: 2
+    steps:
+      - name: Check out the proof
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      # Builds the default target `Submission` (lakefile.toml), which transitively
+      # elaborates every module of the proof, including the vendored Robin1984
+      # closure. The committed axiom-audit.txt is a packaging-time receipt: the
+      # current tree carries no `#print axioms` commands, so it is not replayed here.
+      - name: Install Lean and cached Mathlib dependencies, build the proof
+        uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6 # v1
+        with:
+          lake-package-directory: .
+          build: "true"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "true"

@@ -15,6 +15,13 @@ jobs:
     steps:
       - name: Check out the proof
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      # This repo intentionally does not commit lake-manifest.json (COMMANDS.md);
+      # lean-action requires one, so generate it from the pinned lakefile requires.
+      - name: Install elan and generate lake-manifest.json
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain "$(cat lean-toolchain)"
+          . "$HOME/.elan/env"
+          lake update
       # Builds the default target `Submission` (lakefile.toml), which transitively
       # elaborates every module of the proof, including the vendored Robin1984
       # closure. The committed axiom-audit.txt is a packaging-time receipt: the

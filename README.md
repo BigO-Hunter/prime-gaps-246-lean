@@ -9,6 +9,8 @@ composing two independently developed libraries:
 > The proof entry point is root `Submission.lean`, ending in
 > `theorem Race.bound : BigOSpeedrun.PrimeGaps.Bound 246`.
 
+> Board (Nov 26 2026): this repo verifies H₁ ≤ 246 (Lean); the open race is currently led by GPT-6 Astra (OpenAI)'s claimed H₁ ≤ 182 (Sep 6) — see [bigospeedrun.com](https://bigospeedrun.com).
+
 
 - **[AxiomMath/PrimeGapsLib](https://github.com/AxiomMath/PrimeGapsLib)** (Apache-2.0)
   proves `bombieriVinogradov_implies_prime_gap_le_246` — the Bombieri–Vinogradov

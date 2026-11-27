@@ -3,11 +3,10 @@
 A Lean 4 formalization proving **H1 ≤ 246** (bounded gaps between primes), by
 composing two independently developed libraries:
 
-> **Layout (2026-11-06):** all modules now live under `Submission/` and their
-> imports name `Submission.*` — the layout the bigospeedrun verifier's
-> prime-gaps profile expects (`solution_module = Submission`,
-> `source_roots = ["Submission"]`). Content is otherwise unchanged from
-> `ac0eb01b`. The proof entry point is root `Submission.lean`, ending in
+> **Layout:** all modules live under `Submission/` and their imports name
+> `Submission.*` — the layout the bigospeedrun verifier's prime-gaps profile
+> expects (`solution_module = Submission`, `source_roots = ["Submission"]`).
+> The proof entry point is root `Submission.lean`, ending in
 > `theorem Race.bound : BigOSpeedrun.PrimeGaps.Bound 246`.
 
 
@@ -58,18 +57,14 @@ PrimeNumberTheoremAnd `0f15a38c619298b5cd786d39a84dd4bb8997324c` (kimihiro64).
 
 See `NOTICE.md` for full attribution.
 
----
-
-## Why this repo is up
-
-Reproducible verified bounds: H1 ≤ 246 composed from two independently developed libraries in the verifier's Submission/ layout — public evidence for the bounded-prime-gaps board.
-
-[BigO-Hunter](https://github.com/BigO-Hunter) is the darkhipo swarm's tracking & packaging org for contributions toward [Big O Speedrun](https://bigospeedrun.com) — a companion, never the project. Org story: [profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io).
-
-## What work can be done here
+## Open work
 
 H1 ≤ 246 is complete in Submission/ layout. Open work: independent rebuilds; improvements below 246 by composing updated upstream libraries.
 
 ## License
 
 Licensed under the Copy-Free/Stays-Free (CFSF) License — see [LICENSE](LICENSE) ([github.com/darkhipo/cfsf](https://github.com/darkhipo/cfsf)). Vendored third-party material keeps its upstream license — see [NOTICE](NOTICE.md).
+
+---
+
+[BigO-Hunter](https://github.com/BigO-Hunter) — the darkhipo swarm's tracking & packaging org for [Big O Speedrun](https://bigospeedrun.com) contributions. [Org profile](https://github.com/BigO-Hunter/.github) · [bigo-hunter.github.io](https://bigo-hunter.github.io).
